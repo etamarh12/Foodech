@@ -1,0 +1,79 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    height: 1000px;
+    background-image: url("https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466_960_720.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: aliceblue;
+}
+
+.loginTitle {
+    margin-top: -140px;
+    margin-bottom: 15px;
+    font-size: 50px;
+    font-weight: 600;
+    width: 170px;
+    border-color: #ffffff45;
+    border-style: ridge;
+    border-radius: 17px;
+    padding: 10px;
+}
+
+.loginForm {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; 
+    width: 14%;  
+}
+
+.loginForm>label {
+    margin: 10px 0;
+}
+
+.loginInput {
+    padding: 10px;
+    background-color: white;
+    border: none;
+}
+
+.loginButton {
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: lightcoral;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.loginRegisterButton {
+    background-color: teal;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.lable {
+    font-size: 20px;
+    font-weight: 500;
+}
+@keyframes color-change-login {
+    0% { color: #ffffff; }
+    50% { color: rgb(248, 5, 5); }
+    100% { color: rgb(255, 255, 255); }
+  }
+.spanErorLogin {
+    margin-top: 1%;
+    font-size: 20px;
+    margin-left: -12px;
+    color: white;
+    animation: color-change-login 1s infinite
+}
