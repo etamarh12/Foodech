@@ -4,6 +4,7 @@ import axios from "axios";
 import { Context } from "../context/Context";
 import { useLocation } from "react-router";
 import Swal from 'sweetalert2';
+import { FILTER_CATEGORIES } from "../pages/addPost/consts";
 
 export default function EditPost() {
 
@@ -15,6 +16,7 @@ export default function EditPost() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState("");
+  const [category, setCategory] = useState("");
   const [include, setInclude] = useState("");
   const [steps, setSteps] = useState("");
 
@@ -28,29 +30,30 @@ export default function EditPost() {
     const file = fileInput.files[0];
     const formData = new FormData();
     formData.append('file', file);
-  
-        const imageUrl = await axios.post('http://localhost:3001/api/users/images', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
-        const newPost = {
-          username: user.username,
-          title,
-          desc,
-          image: imageUrl.data,
-          include,
-          steps,
-        };
+
+    const imageUrl = await axios.post('http://localhost:3001/api/users/images', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+    const newPost = {
+      username: user.username,
+      title,
+      desc,
+      image: imageUrl.data,
+      include,
+      steps,
+      category,
+    };
 
     try {
-      if (title || desc || image || include || steps) {
+      if (title || desc || image || include || steps || category) {
         const res = await axios.patch("http://localhost:3001/api/users/"
           + path, newPost);
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'edit successfully',
-            showConfirmButton: false,
-            timer: 1500
-          });
-          setTimeout(() => {  window.location.replace("/post/" + res.data._id); }, 1600);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'edit successfully',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        setTimeout(() => { window.location.replace("/post/" + res.data._id); }, 1600);
       } else {
         setfieldsError("*Please fill all required fields*");
       }
@@ -85,6 +88,7 @@ export default function EditPost() {
     setDesc(post.desc);
     setInclude(post.include);
     setSteps(post.steps);
+    setCategory(post.category);
   }, [post]);
 
   return (
@@ -113,6 +117,15 @@ export default function EditPost() {
         <div className="writeFormFirst">
           <input type="file" id="myFile" className="writeFirst" onChange={e => setImage(e.target.value)}>
           </input>
+        </div>
+        <h3 className="catagoriesTitle">Choose a recepie catagory :</h3>
+        <div className="Categories" onChange={e => setCategory(e.target.value)}>
+          {FILTER_CATEGORIES.map(category => (
+            <>
+              <input type="radio" id={category} name="category" value={category} />
+              <label for={category}>{category}</label>
+            </>
+          ))}
         </div>
         <div className="writeFormSec">
           <textarea

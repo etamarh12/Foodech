@@ -8,6 +8,7 @@ const PostsSchema = new mongoose.Schema({
   },
 
   username: String,
+  category: String,
   include: String,
   steps: String,
 });

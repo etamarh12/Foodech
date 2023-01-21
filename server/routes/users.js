@@ -81,6 +81,7 @@ router.patch("/:id", async (req, res) => {
     post.image = req.body.image;
     post.include = req.body.include;
     post.steps = req.body.steps;
+    post.category = req.body.category;
     const savePost = await post.save();
     res.status(200).json(savePost);
   } catch (err) {

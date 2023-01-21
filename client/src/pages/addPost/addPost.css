@@ -100,3 +100,6 @@
     font-family: cursive;
     animation: color-change-eror 2s infinite
 }
+.Categories{
+    font-weight: bold;
+}

@@ -1,0 +1,1 @@
+export const FILTER_CATEGORIES = ['Breakfast', 'Lunch', 'Dinner','Appetizer','Salad','Main-course','Side-dish','Baked-goods','Dessert']

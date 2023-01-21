@@ -3,6 +3,7 @@ import "./addPost.css";
 import axios from "axios";
 import { Context } from "../../context/Context";
 import Swal from 'sweetalert2';
+import { FILTER_CATEGORIES } from "./consts";
 
 export default function AddPost() {
   const [title, setTitle] = useState("");
@@ -10,6 +11,7 @@ export default function AddPost() {
   const [image, setImage] = useState("");
   const [include, setInclude] = useState("");
   const [steps, setSteps] = useState("");
+  const [category, setCategory] = useState("");
   const { user } = useContext(Context);
   const [fieldsError, setfieldsError] = useState("");
 
@@ -34,13 +36,14 @@ export default function AddPost() {
           image: imageUrl.data,
           include,
           steps,
+          category,
         };
-
         const res = await axios.post("http://localhost:3001/api/post", newPost);
+        console.log(newPost);
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'edit successfully',
+          title: 'Post successfully',
           showConfirmButton: false,
           timer: 1500
         });
@@ -86,6 +89,15 @@ export default function AddPost() {
         <div className="writeFormFirst">
           <input type="file" id="myFile" className="writeFirst" onChange={e => setImage(e.target.value)}>
           </input>
+        </div>
+        <h3 className="catagoriesTitle">Choose a recepie catagory :</h3>
+        <div className="Categories" onChange={e => setCategory(e.target.value)}>
+          {FILTER_CATEGORIES.map(category => (
+            <>
+              <input type="radio" id={category} name="category" value={category} />
+              <label for={category}>{category}</label>
+            </>
+          ))}
         </div>
         <div className="writeFormSec">
           <textarea

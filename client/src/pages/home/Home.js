@@ -7,14 +7,15 @@ import axios from "axios";
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('');
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const res = await axios.get("http://localhost:3001/api/post")
-        if(res.data){
+        if (res.data) {
           setPosts(res.data)
-      }
+        }
 
       } catch (err) {
         console.log(err);
@@ -23,14 +24,20 @@ export default function Home() {
     fetchPost()
   }, [])
 
+
   const filteredrecipes = posts.filter(post =>
-    post.title.toLowerCase().includes(search.toLowerCase())
+    post.title.toLowerCase().includes(search.toLowerCase()) &&
+    (categoryFilter === '' || post.category === categoryFilter)
   );
+
+  const handleCategoryChange = e => {
+    setCategoryFilter(e.target.value);
+  };
 
   const handleChange = e => {
     setSearch(e.target.value);
   };
-  
+
   return (
     <div className="home">
       <div>
@@ -41,6 +48,17 @@ export default function Home() {
             onChange={handleChange}
             placeholder='Search recipe'
           />
+          <select className='category-filter' onChange={handleCategoryChange}>
+            <option value=''></option>
+            <option value='Breakfast'>Breakfast</option>
+            <option value='Lunch'>Lunch</option>
+            <option value='Appetizer'>Appetizer</option>
+            <option value='Salad'>Salad</option>
+            <option value='Main-course'>Main-course</option>
+            <option value='Side-dish'>Side-dish</option>
+            <option value='Baked-goods'>Baked-goods</option>
+            <option value='Dessert'>Dessert</option>
+          </select>
         </form>
         <div className='posts'>
           {filteredrecipes.map(post => {

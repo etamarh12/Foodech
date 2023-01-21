@@ -25,7 +25,7 @@ export default function SinglePost() {
         getPost();
     }, [path]);
 
-    if(!post) {
+    if (!post) {
         return null;
     }
 
@@ -37,21 +37,23 @@ export default function SinglePost() {
             return false;
         }
     }
+    
     return (
         <div className="singlepost">
             <div className="singlePostWrapper">
                 <img
-                className="postImg"
-                src={post.image ? `http://localhost:3001/images/${post.image}` : `https://via.placeholder.com/350?text=${post.title.replace(' ', '+')}`}
-                alt=""
-              />
+                    className="postImg"
+                    src={post.image ? `http://localhost:3001/images/${post.image}` : `https://via.placeholder.com/350?text=${post.title.replace(' ', '+')}`}
+                    alt=""
+                />
                 <h1 className="singlePostTitle">
                     {post.title}
                 </h1>
                 <h5 className="by">
                     Written by : <b>{post.username}</b>
                 </h5>
-                <div>{isExist() && post.username === user.username && <button className="editBtn" onClick={() => navigate('/editPost',{ state :{value : path} })}>Edit</button>}</div>
+                    <b className="categoryTitle">Food Category: </b><b className="category">{post.category}</b>
+                <div>{isExist() && post.username === user.username && <button className="editBtn" onClick={() => navigate('/editPost', { state: { value: path } })}>Edit</button>}</div>
                 <div className="singlePostInfo">
                     <span className="ingredients">
                         <h1 className="ingredient">Ingredient :</h1>

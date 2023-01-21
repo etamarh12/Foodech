@@ -45,6 +45,16 @@
     padding: 15px;
     border-radius: 15px;
 }
+.categoryTitle{
+    margin-left: 85%;
+    width: fit-content;
+}
+.category{
+    background-color: #ff00001c;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 3px;
+}
 .editBtn {
     display: flex;
     border-radius: 15px;

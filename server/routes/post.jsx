@@ -13,6 +13,7 @@ router.post("/", async (req, res) => {
     image: req.body.image,
     include: req.body.include,
     steps: req.body.steps,
+    category: req.body.category,
   });
     const savePost = await newPost.save();
     res.status(200).json(savePost);
