@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const authoRoute = require("./routes/auth");
 const usersRoute = require("./routes/users");
 const postRoute = require("./routes/post.jsx");
-const multer = require("multer");
 var cors = require('cors')
 app.use(cors())
 dotenv.config();
